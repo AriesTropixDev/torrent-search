@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Torrent Search</title>
+  </head>
+  <body>
+    <h1>Torrent Search</h1>
+
+    <form id="form" action="/.netlify/functions/search">
+      <input id="query" name="query" placeholder="Search torrents">
+      <button>Search</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Size</th>
+          <th>Seeds</th>
+          <th>Peers</th>
+        </tr>
+      </thead>
+      <tbody id="results"></tbody>
+    </table>
+
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>
