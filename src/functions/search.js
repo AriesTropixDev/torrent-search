@@ -2,19 +2,22 @@ const torrent = require("torrent-search-api");
 
 torrent.enablePublicProviders();
 
-exports.handler = async (event, context, callback) => {
-  if (typeof event.queryStringParameters.query !== "string") {
-    return callback("Malformed query");
+exports.handler = async (event) => {
+  if (typeof event.queryStringParameters.q !== "string") {
+    return {
+      statusCode: 400,
+      body: "Must provide a `q` query parameter containing a search string.",
+    };
   }
 
   const torrents = await torrent.search(
-    event.queryStringParameters.query,
+    event.queryStringParameters.q,
     null,
-    20
+    10
   );
 
-  return callback(null, {
+  return {
     statusCode: 200,
     body: JSON.stringify(torrents),
-  });
+  };
 };

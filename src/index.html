@@ -7,25 +7,37 @@
     <title>Torrent Search</title>
   </head>
   <body>
-    <h1>Torrent Search</h1>
+    <div id="app">
+      <h1>Torrent Search</h1>
 
-    <form id="form" action="/.netlify/functions/search">
-      <input id="query" name="query" placeholder="Search torrents">
-      <button>Search</button>
-    </form>
+      <form action="/.netlify/functions/search" @submit.prevent="search">
+        <input name="query" placeholder="Search torrents" v-model="q">
+        <button>Search</button>
+      </form>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Size</th>
-          <th>Seeds</th>
-          <th>Peers</th>
-        </tr>
-      </thead>
-      <tbody id="results"></tbody>
-    </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Size</th>
+            <th>Seeds</th>
+            <th>Peers</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="torrent in torrents" :key="torrent.desc">
+            <td>
+              <a :href="torrent.desc">{{ torrent.title }}</a>
+            </td>
+            <td>{{ torrent.size }}</td>
+            <td>{{ torrent.seeds }}</td>
+            <td>{{ torrent.peers }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
