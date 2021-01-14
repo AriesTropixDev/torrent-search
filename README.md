@@ -55,9 +55,7 @@ npx netlify open:site
 
 ## To Do
 
-1. Make the UI prettier
-2. Add magnet links in the results
-3. Add "loading" behavior once search form submitted
+1. Magnet links in the search results
 
 ## License
 

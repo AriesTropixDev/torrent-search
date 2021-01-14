@@ -4,37 +4,48 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+    <link href="./styles/index.css" rel="stylesheet">
+
     <title>Torrent Search</title>
   </head>
   <body>
-    <div id="app">
+    <div class="container" id="app">
       <h1>Torrent Search</h1>
 
       <form action="/.netlify/functions/search" @submit.prevent="search">
-        <input name="query" placeholder="Search torrents" v-model="q">
-        <button>Search</button>
+        <input name="query" placeholder="Search torrents" v-model="q"><button>Search</button>
       </form>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Size</th>
-            <th>Seeds</th>
-            <th>Peers</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="torrent in torrents" :key="torrent.desc">
-            <td>
-              <a :href="torrent.desc">{{ torrent.title }}</a>
-            </td>
-            <td>{{ torrent.size }}</td>
-            <td>{{ torrent.seeds }}</td>
-            <td>{{ torrent.peers }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="statusMessage" v-if="status === 'searching'">
+        Searching...
+      </div>
+
+      <div v-if="status === 'searched'">
+        <table v-if="resultsFound">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Size</th>
+              <th>Seeds</th>
+              <th>Peers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="torrent in torrents" :key="torrent.desc">
+              <td>
+                <a target="_blank" :href="torrent.magnet || torrent.desc" :title="torrent.provider">{{ torrent.shortTitle }}</a>
+              </td>
+              <td>{{ torrent.size }}</td>
+              <td>{{ torrent.seeds }}</td>
+              <td>{{ torrent.peers }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="statusMessage" v-else>No results.</p>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>

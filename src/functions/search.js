@@ -10,11 +10,14 @@ exports.handler = async (event) => {
     };
   }
 
-  const torrents = await torrent.search(
-    event.queryStringParameters.q,
-    null,
-    10
-  );
+  const res = await torrent.search(event.queryStringParameters.q, null, 10);
+
+  const torrents = res.map((torrent) => {
+    return {
+      ...torrent,
+      shortTitle: torrent.title.slice(0, 50),
+    };
+  });
 
   return {
     statusCode: 200,

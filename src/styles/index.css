@@ -1,0 +1,66 @@
+html,
+input,
+button {
+  font-size: 20px;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+a {
+  color: dodgerblue;
+  text-decoration: none;
+}
+
+a:hover {
+  color: deepskyblue;
+}
+
+.container {
+  max-width: 800px;
+  margin: 3rem auto;
+}
+
+h1 {
+  margin-top: 0;
+  text-align: center;
+}
+
+form {
+  margin-bottom: 1.5rem;
+}
+
+input, button {
+  border-radius: 0;
+  border: solid 1px black;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+}
+
+input {
+  width: 80%;
+  border-right: none;
+  outline: none;
+}
+
+button {
+  width: 19%;
+  background-color: black;
+  color: white;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+}
+
+th, td {
+  padding: 0.4rem 0.25rem;
+}
+
+.statusMessage {
+  text-align: center;
+  font-size: 1.5rem;
+}
