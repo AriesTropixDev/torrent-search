@@ -14,37 +14,43 @@
     <div class="container" id="app">
       <h1>Torrent Search</h1>
 
-      <form action="/.netlify/functions/search" @submit.prevent="search">
-        <input name="query" placeholder="Search torrents" v-model="q"><button>Search</button>
-      </form>
-
-      <div class="statusMessage" v-if="status === 'searching'">
-        Searching...
+      <div class="statusMessage" v-if="false">
+        Loading...
       </div>
 
-      <div v-if="status === 'searched'">
-        <table v-if="resultsFound">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Size</th>
-              <th>Seeds</th>
-              <th>Peers</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="torrent in torrents" :key="torrent.desc">
-              <td>
-                <a target="_blank" :href="torrent.magnet || torrent.desc" :title="torrent.provider">{{ torrent.shortTitle }}</a>
-              </td>
-              <td>{{ torrent.size }}</td>
-              <td>{{ torrent.seeds }}</td>
-              <td>{{ torrent.peers }}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div v-cloak>
+        <form action="/.netlify/functions/search" @submit.prevent="search">
+          <input name="query" placeholder="Search torrents" v-model="q"><button>Search</button>
+        </form>
 
-        <p class="statusMessage" v-else>No results.</p>
+        <div class="statusMessage" v-if="status === 'searching'">
+          Searching...
+        </div>
+
+        <div v-if="status === 'searched'">
+          <table v-if="resultsFound">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Size</th>
+                <th>Seeds</th>
+                <th>Peers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="torrent in torrents" :key="torrent.desc">
+                <td>
+                  <a target="_blank" :href="torrent.magnet || torrent.desc" :title="torrent.provider">{{ torrent.shortTitle }}</a>
+                </td>
+                <td>{{ torrent.size }}</td>
+                <td>{{ torrent.seeds }}</td>
+                <td>{{ torrent.peers }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="statusMessage" v-else>No results.</p>
+        </div>
       </div>
     </div>
 
