@@ -2,6 +2,8 @@
 
 Search public torrent sites.
 
+![Torrent Search demonstration showing a search for "Avengers" and hovering over some of the results](torrentsearch-demo.gif)
+
 ## Installation
 
 Requires [Node.js](https://nodejs.org/).
